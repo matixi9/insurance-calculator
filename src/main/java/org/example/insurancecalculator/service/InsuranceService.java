@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.example.insurancecalculator.model.InsuranceOffer;
 import org.example.insurancecalculator.model.InsuranceRequest;
-import org.example.insurancecalculator.model.VehicleType;
 import org.example.insurancecalculator.repository.InsuranceRepository;
 import org.example.insurancecalculator.strategy.RiskCalculationStrategy;
 import org.springframework.stereotype.Service;
