@@ -1,17 +1,18 @@
 package org.example.insurancecalculator.model;
 
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.pl.PESEL;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class InsuranceRequest {
-    @NotBlank(message = "PESEL cannot be empty")
+    @NotNull(message = "PESEL is required")
+    @PESEL(message = "PESEL is invalid")
     private String pesel;
 
     @Min(value = 18, message = "Driver has to be an adult")
