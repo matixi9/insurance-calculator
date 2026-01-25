@@ -4,8 +4,10 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.example.insurancecalculator.model.InsuranceOffer;
 import org.example.insurancecalculator.model.InsuranceRequest;
+import org.example.insurancecalculator.model.VehicleType;
 import org.example.insurancecalculator.repository.InsuranceRepository;
 import org.example.insurancecalculator.strategy.RiskCalculationStrategy;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -17,6 +19,22 @@ import java.util.List;
 public class InsuranceService {
     private final InsuranceRepository repository;
     private final List<RiskCalculationStrategy> strategies;
+
+    @Value("${insurance.price.base}")
+    private double basePrice;
+
+    @Value("${insurance.price.car}")
+    private double carPrice;
+
+    @Value("${insurance.price.truck}")
+    private double truckPrice;
+
+    @Value("${insurance.price.motorcycle}")
+    private double motorcyclePrice;
+
+    @Value("${insurance.price.bike}")
+    private double bikePrice;
+
 
     public InsuranceOffer calculateAndSave(InsuranceRequest request){
         InsuranceOffer offer = new InsuranceOffer();
@@ -42,16 +60,23 @@ public class InsuranceService {
     }
 
     private double calculatePrice(InsuranceRequest request) {
-        double price = 300;
-
-        price += request.getType().getBasePrice();
-
+        double price = basePrice;
+        price += getPriceForVehicle(request.getType());
 
         for (RiskCalculationStrategy strategy : strategies) {
             double markup = strategy.calculateRisk(request);
             price *= markup;
         }
         return price;
+    }
+
+    private double getPriceForVehicle(VehicleType type) {
+        return switch (type) {
+            case CAR -> carPrice;
+            case TRUCK -> truckPrice;
+            case MOTORCYCLE -> motorcyclePrice;
+            case BIKE -> bikePrice;
+        };
     }
 
     public List<InsuranceOffer> getAllOffers() {

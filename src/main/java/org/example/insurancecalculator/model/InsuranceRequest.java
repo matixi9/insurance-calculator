@@ -21,5 +21,10 @@ public class InsuranceRequest {
     @NotNull(message = "Vehicle type is required")
     private VehicleType type;
 
+    private double engineCapacity;
+
+    @NotNull(message = "Car age is required")
+    private int vehicleAge;
+
     private boolean hadAccident;
 }

@@ -35,7 +35,7 @@ class InsuranceCalculatorApplicationTests {
 
             InsuranceService service = new InsuranceService(repository, strategies);
 
-            InsuranceRequest request = new InsuranceRequest("12345678901", 20, VehicleType.CAR, false);
+            InsuranceRequest request = new InsuranceRequest("12345678901", 20, VehicleType.CAR, 1.6, 10,false);
 
             // Act
             // Base: 300 + Car: 540 = 840.

@@ -5,14 +5,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class YoungDriverStrategy implements RiskCalculationStrategy {
-    @Value("${insurance.risk.young-driver}")
-    private double youngDriverMultiplier;
+public class HighEngineCapacity implements RiskCalculationStrategy{
+    @Value("${insurance.risk.high-engine-capacity}")
+    private double highEngineCapacityMultiplier;
 
     @Override
     public double calculateRisk(InsuranceRequest request) {
-        if (request.getAge() < 24) {
-            return youngDriverMultiplier;
+        if (request.getEngineCapacity() >= 3) {
+            return highEngineCapacityMultiplier;
         }
         return 1;
     }
