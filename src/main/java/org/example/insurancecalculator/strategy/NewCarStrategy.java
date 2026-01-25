@@ -11,7 +11,7 @@ public class NewCarStrategy implements RiskCalculationStrategy{
 
     @Override
     public double calculateRisk(InsuranceRequest request) {
-        if (request.getAge() < 5) {
+        if (request.getVehicleAge() < 5) {
             return newCarMultiplier;
         }
         return 1;

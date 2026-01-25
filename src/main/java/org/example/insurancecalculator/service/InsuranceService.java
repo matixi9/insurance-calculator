@@ -23,16 +23,16 @@ public class InsuranceService {
     @Value("${insurance.price.base}")
     private double basePrice;
 
-    @Value("${insurance.price.car}")
+    @Value("${insurance.price.vehicle.car}")
     private double carPrice;
 
-    @Value("${insurance.price.truck}")
+    @Value("${insurance.price.vehicle.truck}")
     private double truckPrice;
 
-    @Value("${insurance.price.motorcycle}")
+    @Value("${insurance.price.vehicle.motorcycle}")
     private double motorcyclePrice;
 
-    @Value("${insurance.price.bike}")
+    @Value("${insurance.price.vehicle.bike}")
     private double bikePrice;
 
 
